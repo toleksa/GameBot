@@ -17,7 +17,13 @@ Bot uses following libraries:
 
 ## Installation & Launch
 
+```pip install -r requirements.txt```
+
+OR
+
 ```pip install pypiwin32 playsound Image numpy opencv-python```
+
+THEN 
 
 ```python LostCrusade.py```
 
