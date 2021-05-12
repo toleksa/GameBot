@@ -15,17 +15,20 @@ Bot uses following libraries:
 - [playsound](https://pypi.org/project/playsound/) - sound notifications
 - [numpy](https://pypi.org/project/numpy/) [image](https://pypi.org/project/image/) [opencv](https://pypi.org/project/opencv-python/) - image recognition
 
-## Installation & Launch
+
+## How it works
+
+GameBot has two main parts. libBot.py is a toolkit handling all technical stuff like mouse control, window control or image recognition. On top of that, LostCrusade.py has the game logic with all steps required to perform in-game tasks like send army to gather resources or order production of new units.
+
+On technical level, modus operandi is to check on screen, using image recognition, if there is particular button/symbol, click it and check results - for example another button/symbol appeared on screen, then proceed with next step. 
+
+## Installation
 
 ```pip install -r requirements.txt```
 
 OR
 
 ```pip install pypiwin32 playsound Image numpy opencv-python```
-
-THEN 
-
-```python LostCrusade.py```
 
 ## Configuration
 
@@ -48,9 +51,9 @@ def mainLoop():
 
 mainLoop() contains tasks for GameBot to execute, they can be disabled by commenting out unneeded routines
 
-## How it works
+## Launch
 
-Modus operandi is to find on screen, using image recognition, if there is particular button/symbol, click it and check results - for example another button/symbol appeared on screen, then proceed with next step.
+```python LostCrusade.py```
 
 ### Example for Gather Resources. 
 * Click ARMY button (1)
