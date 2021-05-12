@@ -1,5 +1,5 @@
 # GameBot 
-### for Warhammer 40000 Lost Crusade [Google Play](https://play.google.com/store/apps/details?id=com.orcacorp.wargame)
+### for Warhammer 40000 Lost Crusade - [Google Play](https://play.google.com/store/apps/details?id=com.orcacorp.wargame)
 Your personal assistant for repetitive tasks including:
 * Resource collection
 * Join Breach Assault (in game event)
