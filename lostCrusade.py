@@ -32,7 +32,7 @@ class gameState:
 
 def nextRss():
     print("getRSS: [",int(gameState.lastRss)," % 4] => ", gameState.lastRss % 4, sep='')
-    click = (clicks.mapRss[gameState.lastRss % 4][0], clicks.mapRss[gameState.lastRss % 4][1])
+    click = (clicks.mapRss[gameState.lastRss % 4])
     gameState.lastRss+=1
     return click
 
@@ -171,6 +171,8 @@ def mainLoop():
     #clickGame(screenOpts, clicks.windowBar)  # windowFocus
     if isWindowFocus(screenOpts):
         clickGame(screenOpts, clicks.windowBar)  # windowFocus
+
+        #enabled routines:
         crashedApp()
         gatherResources()
         if findImgOnScreen(screenOpts, 'res\\armyList2.png') != 0:
