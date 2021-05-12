@@ -1,6 +1,6 @@
 from libBot import *
 
-class clicks:
+class Clicks:
     windowBar = (200,-20)
     noxApps = (1790,980)
     starMap = (135,875)
@@ -27,20 +27,20 @@ class clicks:
     trainButton = (1600, 900)
     back = (60, 30)
 
-class gameState:
+class GameState:
     lastRss = 0
 
 def nextRss():
-    print("getRSS: [",int(gameState.lastRss)," % 4] => ", gameState.lastRss % 4, sep='')
-    click = (clicks.mapRss[gameState.lastRss % 4])
-    gameState.lastRss+=1
+    print("getRSS: [",int(GameState.lastRss)," % 4] => ", GameState.lastRss % 4, sep='')
+    click = (Clicks.mapRss[GameState.lastRss % 4])
+    GameState.lastRss+=1
     return click
 
 def crashedApp():
     print("Starting " + sys._getframe().f_code.co_name)
     pointer = findImgOnScreen(screenOpts, 'res\\appIcon3.png')
     if pointer != 0:
-        clickGame(screenOpts, clicks.noxApps, 1)
+        clickGame(screenOpts, Clicks.noxApps, 1)
         while True:
             pointer2 = findImgOnScreen(screenOpts, 'res\\noxX.png')
             if pointer2 != 0:
@@ -50,7 +50,7 @@ def crashedApp():
                 break
         pointer2 = findImgOnScreen(screenOpts, 'res\\noRecentItems.png')
         if pointer2 != 0:
-            clickGame(screenOpts, clicks.noxApps, 1)
+            clickGame(screenOpts, Clicks.noxApps, 1)
         pointer = (pointer[0] + 40, pointer[1] + 40)
         clickGame(screenOpts, pointer, 0.5)
         counter=0
@@ -80,25 +80,25 @@ def joinBreach():
             pointer = (pointer[0]+80,pointer[1]+40)
             clickGame(screenOpts, pointer, 0.5)
         if findImgOnScreen(screenOpts, 'res\\join.png') != 0:
-            clickGame(screenOpts, clicks.joinBreach, 1)
-        clickGame(screenOpts, clicks.eventsClose, 1)
+            clickGame(screenOpts, Clicks.joinBreach, 1)
+        clickGame(screenOpts, Clicks.eventsClose, 1)
 
 def gatherResources():
     print("Starting " + sys._getframe().f_code.co_name)
     if findImgOnScreen(screenOpts, 'res\\starMap.png') != 0:
         print("switch to map")
-        clickGame(screenOpts, clicks.starMap, 4)
+        clickGame(screenOpts, Clicks.starMap, 4)
     if findImgOnScreen(screenOpts, 'res\\armyList2.png') == 0:
         print("get army list")
-        clickGame(screenOpts, clicks.armies, 1)
+        clickGame(screenOpts, Clicks.armies, 1)
     if findImgOnScreen(screenOpts, 'res\\vacant.png') != 0:
-        clickGame(screenOpts, clicks.mapSearch, 1)
-        clickGame(screenOpts, clicks.mapSearch, 1)
+        clickGame(screenOpts, Clicks.mapSearch, 1)
+        clickGame(screenOpts, Clicks.mapSearch, 1)
         if findImgOnScreen(screenOpts, 'res\\explore.png') != 0:
             clickGame(screenOpts, nextRss(), 1)
-            clickGame(screenOpts, clicks.mapExplore, 2)
-            clickGame(screenOpts, clicks.mapCollect, 1)
-            clickGame(screenOpts, clicks.mapDeploy, 1)
+            clickGame(screenOpts, Clicks.mapExplore, 2)
+            clickGame(screenOpts, Clicks.mapCollect, 1)
+            clickGame(screenOpts, Clicks.mapDeploy, 1)
             gatherResources()
         else:
             print("ERROR - no explore")
@@ -153,12 +153,12 @@ def trainArmy():
             if pointer != 0:
                 pointer = (pointer[0] + 20, pointer[1] + 20)
                 clickGame(screenOpts, pointer, 2)
-                clickGame(screenOpts, clicks.trainButton, 2)
+                clickGame(screenOpts, Clicks.trainButton, 2)
                 pointer = findImgOnScreen(screenOpts, 'res\\goTraining.png')
                 if pointer != 0:
                     print("not enough resources")
-                    clickGame(screenOpts, clicks.back, 1)
-                    clickGame(screenOpts, clicks.back, 1)
+                    clickGame(screenOpts, Clicks.back, 1)
+                    clickGame(screenOpts, Clicks.back, 1)
                     break
             else:
                 print("ERROR - trainUnit")
@@ -170,13 +170,13 @@ def trainArmy():
 def mainLoop():
     #clickGame(screenOpts, clicks.windowBar)  # windowFocus
     if isWindowFocus(screenOpts):
-        clickGame(screenOpts, clicks.windowBar)  # windowFocus
+        clickGame(screenOpts, Clicks.windowBar)  # windowFocus
 
         #enabled routines:
         crashedApp()
         gatherResources()
         if findImgOnScreen(screenOpts, 'res\\armyList2.png') != 0:
-            clickGame(screenOpts, clicks.events, 1)
+            clickGame(screenOpts, Clicks.events, 1)
         joinBreach()
         helpFlag()
         helpFlag()
@@ -188,7 +188,7 @@ def mainLoop():
 
 def main():
     updateWindow(screenOpts)
-    clickGame(screenOpts,clicks.windowBar) #windowFocus
+    clickGame(screenOpts,Clicks.windowBar) #windowFocus
 
     #for testing single routines:
     #gatherResources()
