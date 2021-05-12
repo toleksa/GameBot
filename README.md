@@ -55,6 +55,8 @@ mainLoop() contains tasks for GameBot to execute, they can be disabled by commen
 
 ```python LostCrusade.py```
 
+## Demo how it works
+
 ### Example for Gather Resources. 
 * Click ARMY button (1)
 ![1](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/1.png)
