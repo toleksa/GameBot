@@ -182,7 +182,7 @@ def mainLoop():
         trainArmy()
     else:
         playsound('res\\mario.mp3')
-    loopDelay(300,-1)
+    loopDelay(300,-1,'res\\ding.mp3')
 
 def main():
     updateWindow(screenOpts)

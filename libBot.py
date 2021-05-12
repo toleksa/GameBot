@@ -116,13 +116,13 @@ def updateWindow(screenOpts):
 def isWindowFocus(screenOpts):
     return screenOpts.window == win32gui.GetForegroundWindow()
 
-def loopDelay(seconds,alarm = -1):
+def loopDelay(seconds,alarmTime = -1,alarmFile = ''):
     while True:
         if seconds==0:
             print("")
             break
-        if seconds==alarm:
-            playsound('res/ding.mp3')
+        if seconds==alarmTime:
+            playsound(alarmFile)
             seconds-=1
         sys.stdout.write('\r')
         sys.stdout.flush()
