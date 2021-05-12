@@ -50,7 +50,7 @@ mainLoop() contains tasks for GameBot to execute, they can be disabled by commen
 
 ## How it works
 
-Most of the time for this game, modus operandi is to find on screen, using image recognition if there is particular button/symbol using image recognition, click it and check results - for example another button/symbol appeared on screen, then proceed with next step.
+Modus operandi is to find on screen, using image recognition, if there is particular button/symbol, click it and check results - for example another button/symbol appeared on screen, then proceed with next step.
 
 ### Example for Gather Resources. 
 * Click ARMY button (1)
