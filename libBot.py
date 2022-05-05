@@ -1,4 +1,4 @@
-# pip install pypiwin32 playsound Image numpy opencv-python
+# pip install pypiwin32 playsound==1.2.2 Image numpy opencv-python
 import win32gui, win32con, win32api
 from playsound import playsound
 from PIL import ImageGrab
