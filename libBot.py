@@ -24,7 +24,7 @@ def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0):
     if Yoffset + YbottomOffset >= screenOpts.y_len:
         print("ERROR - offsets bigger than total height")
         return -1
-    im = ImageGrab.grab((screenOpts.x_min,screenOpts.y_min+Yoffset,screenOpts.x_max,screenOpts.y_max-YbottomOffset))
+    im = ImageGrab.grab((screenOpts.x_min,screenOpts.y_min+Yoffset,screenOpts.x_max,screenOpts.y_max-YbottomOffset), all_screens=True)
     if screenOpts.debug != 0:
         im.save(os.getcwd() + '\\GrabGameWindow.png', 'PNG')
     return im
