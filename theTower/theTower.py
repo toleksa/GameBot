@@ -1,4 +1,4 @@
-from libBot import *
+from ..libBot import *
 import inspect
 
 # TODO: change class to dictionary
