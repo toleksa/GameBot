@@ -1,4 +1,4 @@
-from ..libBot import *
+from libBot import *
 import inspect
 
 # TODO: change class to dictionary
@@ -13,19 +13,19 @@ class Clicks:
     shoppingCounter = 0
 
 def mainLoop():
-    screenOpts.debug=1
+    #screenOpts.debug=1
     #clickGame(screenOpts, clicks.windowBar)  # windowFocus
     if isWindowFocus(screenOpts):
         #clickGame(screenOpts, Clicks.windowBar)  # windowFocus
 
         #enabled routines:
         #crashedApp()
-        pointer = findImgOnScreen(screenOpts, 'theTower\\hogar.png')
+        pointer = findImgOnScreen(screenOpts, 'res\\hogar.png')
         if pointer != 0:
             pointer = (pointer[0] + 30, pointer[1] + 30)
             clickAbsolute(screenOpts, pointer, 0.5)
             
-        pointer = findImgOnScreen(screenOpts, 'theTower\\battle.png')
+        pointer = findImgOnScreen(screenOpts, 'res\\battle.png')
         if pointer != 0:
             pointer = (pointer[0] + 30, pointer[1] + 30)
             clickAbsolute(screenOpts, pointer, 0.5)
