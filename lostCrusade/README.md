@@ -63,38 +63,38 @@ mainLoop() contains tasks for GameBot to execute, they can be disabled by commen
 ![1](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/1.png)
 
 * Check if there is free army slot:
-![vacant](https://raw.githubusercontent.com/toleksa/GameBot/main/res/vacant.png)
-![2](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/2.png)
+![vacant](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/res/vacant.png)
+![2](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/2.png)
 
 * Found free slot, so next step is to look for resources (2)
-![3](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/3.png)
+![3](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/3.png)
 
 * Choose resource type (3) - by default it goes by round robin for all four types and can be adjusted in nextRSS()
-![4](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/4.png)
+![4](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/4.png)
 
 * Check if there is collect icon and click it (5)
-![5](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/5.png)
+![5](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/5.png)
 
 * Deploy army (6)
-![6](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/6.png)
+![6](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/6.png)
 
 * Army is traveling to resource deposit for gathering - success
-![7](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/7.png)
+![7](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/7.png)
 
 * Yes, I skipped step (4) ;)
 
 ### Example for Landing Pad:
 * Locate dropship icon and click it
-![9](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/9.png)
+![9](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/9.png)
 
 * If there is CLAIM button, get reward
-![10](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/10.png)
+![10](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/10.png)
 
 * Otherwise CLOSE window and come back later - in this example CLOSE button is on same place as CLAIM, but sometimes it's X in corner, this situation is also handled by bot.
-![11](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/11.png)
+![11](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/11.png)
 
 ### Example output on console
-![8](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/8.png)
+![8](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/8.png)
 
 ## License
 
