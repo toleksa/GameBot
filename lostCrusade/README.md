@@ -60,7 +60,7 @@ mainLoop() contains tasks for GameBot to execute, they can be disabled by commen
 
 ### Example for Gather Resources. 
 * Click ARMY button (1)
-![1](https://raw.githubusercontent.com/toleksa/GameBot/main/doc/1.png)
+![1](https://raw.githubusercontent.com/toleksa/GameBot/main/lostCrusade/doc/1.png)
 
 * Check if there is free army slot:
 ![vacant](https://raw.githubusercontent.com/toleksa/GameBot/main/res/vacant.png)
