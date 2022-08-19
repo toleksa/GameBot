@@ -129,3 +129,8 @@ def loopDelay(seconds,alarmTime = -1,alarmFile = ''):
         print("sleeping: " + str(seconds) + "s      ", end='', flush=True)
         time.sleep(1)
         seconds-=1
+
+def scrollUp():
+    print("scrollUp")
+    cursorPosition(screenOpts,(screenOpts.x_len // 2, screenOpts.y_len // 2))
+    win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 0, 0, 10000000, 0)
