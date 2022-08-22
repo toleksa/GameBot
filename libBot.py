@@ -55,10 +55,10 @@ def clickImage(sleep, template_img, threshold=0.8, Yoffset=0, YbottomOffset=0, p
         if pointer != 0:
             pointer = (pointer[0] + pointerXoffset, pointer[1] + pointerYoffset)
             clickAbsolute(screenOpts, pointer, sleep)
-            return 0
+            return True
         else:
             if counter <= 0:
-                return 1
+                return False
             counter-=1
             time.sleep(1)
 
