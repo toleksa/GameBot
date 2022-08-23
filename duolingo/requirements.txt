@@ -1,0 +1,7 @@
+pypiwin32
+playsound==1.2.2 
+Image
+numpy
+opencv-python
+easyocr
+googletrans>=3.1.0a0
