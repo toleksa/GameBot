@@ -41,7 +41,7 @@ def gotoLibrary():
     if pointer == 0:
         fail("failed to go to library")
 
-def getStory():
+def getStory1():
     counter=200
     while True:
         pointer = findImgOnScreen(screenOpts, 'res\\story1icon.png', 1)
@@ -54,17 +54,52 @@ def getStory():
             counter-=1
             if counter==0:
                 fail("failed to scroll to story")
-            time.sleep(0.5)
+            time.sleep(1.5)
 
+def reset():
+    print("reset")
+    launchApp()
+    gotoLibrary()
+    getStory1()
 
+def clickContinue(sleep=0.5):
+    return clickImage(sleep, 'res\\continue.png', 0.9, 900)
+
+def story1():
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickImage(2,'res\\story1\\001-woIstMeinPass.png'): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickImage(2, 'res\\story1\\002-yesThatsRight.png'): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickImage(2, 'res\\story1\\003-lauft.png'): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickImage(2, 'res\\story1\\004-nicht.png'): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickContinue(4): return False
+    if not clickImage(2, 'res\\story1\\005-inHisHang.png'): return False
+    if not clickContinue(4): return False
 
 def mainLoop():
     if isWindowFocus(screenOpts):
         #clickGame(screenOpts, Clicks.windowBar)  # windowFocus
-        print(1)
 
-
-
+        if not story1(): reset()
 
     #else:
         #playsound('res\\mario.mp3')
@@ -73,18 +108,17 @@ def main():
     updateWindow(screenOpts)
     clickGame(screenOpts,Clicks.windowBar) #windowFocus
 
-    launchApp()
-    gotoLibrary()
-    getStory()
+    #reset()
+    mainLoop()
+    exit(1)
 
     while True:
         updateWindow(screenOpts)
         printCoords(screenOpts)
+
+        #mainLoop()
+
         time.sleep(1)
-
-        #scrollUp()
-
-        mainLoop()
 
 if __name__ == '__main__':
     main()
