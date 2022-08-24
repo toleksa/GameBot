@@ -8,6 +8,8 @@ Bot uses following libraries:
 - [pypiwin32](https://pypi.org/project/pypiwin32/) - windows handling, mouse cursor move, clicks
 - [playsound](https://pypi.org/project/playsound/) - sound notifications
 - [numpy](https://pypi.org/project/numpy/) [image](https://pypi.org/project/image/) [opencv](https://pypi.org/project/opencv-python/) - image recognition
+- [easyocr](https://pypi.org/project/easyocr/) - read/recognize text
+- [googletrans](https://pypi.org/project/googletrans/) - translation
 
 
 ## How it works
@@ -22,7 +24,7 @@ On technical level, modus operandi is to check on screen, using image recognitio
 
 OR
 
-```pip install pypiwin32 playsound==1.2.2 Image numpy opencv-python```
+```pip install pypiwin32 playsound==1.2.2 Image numpy opencv-python easyocr googletrans>=3.1.0a0```
 
 ## Configuration
 
