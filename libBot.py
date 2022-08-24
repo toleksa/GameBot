@@ -1,7 +1,7 @@
 # pip install pypiwin32 playsound==1.2.2 Image numpy opencv-python
 import win32gui, win32con, win32api
 from playsound import playsound
-from PIL import ImageGrab
+from PIL import ImageGrab, ImageEnhance
 import numpy as np
 import time
 import cv2
@@ -20,11 +20,16 @@ class screenOpts:
     window = 0
     debug = 0
 
-def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0):
+def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0,contrast=False):
     if Yoffset + YbottomOffset >= screenOpts.y_len:
         print("ERROR - offsets bigger than total height")
         return -1
     im = ImageGrab.grab((screenOpts.x_min,screenOpts.y_min+Yoffset,screenOpts.x_max,screenOpts.y_max-YbottomOffset), all_screens=True)
+    if contrast:
+        im = ImageEnhance.Brightness(im)
+        im = im.enhance(1.5)
+        im = ImageEnhance.Contrast(im)
+        im = im.enhance(1.5)
     if screenOpts.debug != 0:
         im.save(os.getcwd() + '\\GrabGameWindow.png', 'PNG')
     return im
@@ -71,8 +76,8 @@ def clickAbsolute(screenOpts,x=(0, 0),delay=0.5):
     print("Click.",x)
     time.sleep(delay)
 
-def clickGame(screenOpts,x=(0, 0),delay=0.5):
-    clickAbsolute(screenOpts,(x[0]+screenOpts.x_min,x[1]+screenOpts.y_min),delay)
+def clickGame(screenOpts,x=(0, 0),delay=0.5,Yoffset=0):
+    clickAbsolute(screenOpts,(int(x[0])+screenOpts.x_min,int(x[1])+screenOpts.y_min+Yoffset),delay)
 
 def cursorPosition(screenOpts,x=(0, 0)):
     win32api.SetCursorPos((x[0]+screenOpts.x_min,x[1]+screenOpts.y_min))
