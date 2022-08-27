@@ -28,7 +28,8 @@ class word(object):
         )
 
 def launchApp():
-    if clickImage(2, 'res\\appicon.png'):
+    updateWindow(screenOpts)
+    if clickImage(2, 'res\\appicon.png', 0.8, 200, 350):
 
         updateWindow(screenOpts)
 
@@ -36,23 +37,17 @@ def launchApp():
         while True:
             pointer = findImgOnScreen(screenOpts, 'res\\menubar.png', 1, 940)
             if pointer != 0:
-                break
+                return True
             counter-=1
             if counter <= 0:
                 fail("app failed to start")
             time.sleep(1)
+    fail("appicon.png not found")
 
 def gotoLibrary():
     if not clickImage(2, 'res\\bookicon2.png'):
-
-        pointer = findImgOnScreen(screenOpts, 'res\\bookicon.png')
-        if pointer != 0:
-            pointer = (pointer[0] + 30, pointer[1] + 30)
-            clickAbsolute(screenOpts, pointer, 0.5)
-            time.sleep(1)
-
-    pointer = findImgOnScreen(screenOpts, 'res\\bookicon2.png')
-    if pointer == 0:
+        clickImage(2, 'res\\bookicon.png')
+    if not clickImage(2, 'res\\bookicon2.png'):
         fail("failed to go to library")
 
 def getStory1():
@@ -63,12 +58,13 @@ def getStory1():
             pointer = (pointer[0] + 30, pointer[1] + 30)
             clickAbsolute(screenOpts, pointer, 0.5)
             time.sleep(3)
-            return 0
+            return True
         else:
             scrollUp()
             counter-=1
             if counter==0:
-                fail("failed to scroll to story")
+                print("failed to scroll to story")
+                return False
             time.sleep(1.5)
 
 def reset():
@@ -78,6 +74,7 @@ def reset():
     launchApp()
     gotoLibrary()
     getStory1()
+    return True
 
 def clickContinue(sleep=0.5):
     return clickImage(sleep, 'res\\continue.png', 0.9, 900)
@@ -115,9 +112,6 @@ def story1():
     return True
 
 def quiz():
-    #global window,windowNameAndroid
-    #windowName = windowNameAndroid
-    #window = win32gui.FindWindow(None,windowName)
     #updateWindow()
     clickAbsolute(screenOpts,Clicks.windowBar) #windowFocus
     print("Starting " + sys._getframe(  ).f_code.co_name)
@@ -126,9 +120,11 @@ def quiz():
     #Yoffset=430 #android
     Yoffset=450 #nox
     ptr = findImgOnScreen(screenOpts,'res\\quiz-tapThePairs.png')
+    if ptr == 0:
+        print("couldn't find tapThePairs marker - aborting quiz()")
+        return 0
     Yoffset = ptr[1] + 30
     print('offset: ' + str(Yoffset))
-    #grabGameWindow(Yoffset)
     reader = easyocr.Reader(['de','en'])
     arr=reader.readtext(np.array(grabGameWindow(screenOpts,Yoffset,250,True)), detail = 1)
     for i in range(len(arr)):
@@ -216,7 +212,6 @@ def quiz():
                 for j in range(i+1,len(lista)):
                     clickGame(screenOpts,lista[i].loc,0.5,Yoffset)
                     clickGame(screenOpts,lista[j].loc,0.5,Yoffset)
-                    #ptr = checkClick('00-continueAndroid.png',0.8,0)
                     ptr = findImgOnScreen(screenOpts,'res\\continue.png',0.8,0)
                     if(ptr!=0):
                         print("quiz - continue")
@@ -233,7 +228,6 @@ def quiz():
                 for j in range(len(en)):
                     clickGame(screenOpts,de[i].loc,0.5,Yoffset)
                     clickGame(screenOpts,en[j].loc,0.5,Yoffset)
-                    #ptr = checkClick('00-continueAndroid.png',0.8,0)
                     ptr = findImgOnScreen(screenOpts,'res\\continue.png',0.8,0)
                     if(ptr!=0):
                         print("quiz - continue")
@@ -244,11 +238,15 @@ def quiz():
                 if(done==1): break
     else:
         print("we're done")
+    return True
 
 def mainLoop():
     if isWindowFocus(screenOpts):
 
-        return story1()
+        if not getStory1(): return reset()
+        if not story1(): return reset()
+        if not quiz(): return reset()
+        if not clickImage(2, 'res\\continueBlue.png'): return reset()
 
     #else:
         #playsound('res\\error.mp3')
@@ -259,6 +257,7 @@ def main():
 
     # for testing individual functions
     #reset()
+    #getStory1()
     #mainLoop()
     #quiz()
     #exit(1)
@@ -267,15 +266,7 @@ def main():
         updateWindow(screenOpts)
         printCoords(screenOpts)
 
-        # reset()
-        #getStory1()
-        #if not mainLoop():
-        #    reset()
-        #    continue
-        quiz()
-        if not clickImage(2, 'res\\continueBlue.png'):
-            reset()
-            continue
+        mainLoop()
 
         time.sleep(1)
 
