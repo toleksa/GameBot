@@ -54,7 +54,6 @@ def findImgOnScreen(screenOpts, template_img, threshold=0.8, Yoffset=0, YbottomO
     return 0
 
 def clickImage(sleep, template_img, threshold=0.8, Yoffset=0, YbottomOffset=0, pointerXoffset=30, pointerYoffset=30, counter=10):
-    #counter=10
     while True:
         pointer = findImgOnScreen(screenOpts, template_img, threshold, Yoffset, YbottomOffset)
         if pointer != 0:
@@ -157,3 +156,4 @@ def scrollUp():
 def fail(text):
     print("ERR: " + text)
     exit(1)
+
