@@ -69,6 +69,7 @@ def getStory1():
 
 def reset():
     print("reset")
+    #fail("stopping app for debugging")
     clickGame(screenOpts,Clicks.appsMenu,1)
     clickGame(screenOpts, Clicks.clearAll,1)
     launchApp()
@@ -113,7 +114,7 @@ def story1():
 
 def quiz():
     #updateWindow()
-    clickAbsolute(screenOpts,Clicks.windowBar) #windowFocus
+    clickGame(screenOpts,Clicks.windowBar) #windowFocus
     print("Starting " + sys._getframe(  ).f_code.co_name)
     de = []
     en = []
@@ -246,7 +247,7 @@ def mainLoop():
         if not getStory1(): return reset()
         if not story1(): return reset()
         if not quiz(): return reset()
-        if not clickImage(2, 'res\\continueBlue.png'): return reset()
+        if not clickImage(2, 'res\\continueBlue.png', counter=30): return reset()
 
     #else:
         #playsound('res\\error.mp3')
