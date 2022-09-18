@@ -14,7 +14,7 @@ Bot uses following libraries:
 
 ## How it works
 
-GameBot has two main parts. libBot.py is a toolkit handling all technical stuff like mouse control, window control or image recognition. On top of that, LostCrusade.py has the game logic with all steps required to perform in-game tasks like send army to gather resources or order production of new units.
+GameBot has two main parts. libBot.py is a toolkit handling all technical stuff like mouse control, window control or image recognition. On top of that, Duolingo.py has the game logic with all steps required to perform in-app tasks to choose and solve story.
 
 On technical level, modus operandi is to check on screen, using image recognition, if there is particular button/symbol, click it and check results - for example another button/symbol appeared on screen, then proceed with next step.
 
@@ -30,3 +30,6 @@ OR
 
 No configuration, just fire & forget
 
+## Demo
+
+![full.gif](https://raw.githubusercontent.com/toleksa/GameBot/main/duolingo/doc/full.gif)
