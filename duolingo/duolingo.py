@@ -27,6 +27,14 @@ class word(object):
             )
         )
 
+def log_function(fn):
+    def wrapper(*args, **kwargs):
+        print("entering function ", fn)
+        ret = fn(*args, **kwargs)
+        print("exiting function ", fn)
+        return ret
+    return wrapper
+
 def launchApp():
     updateWindow(screenOpts)
     if clickImage(2, 'res\\appicon.png', 0.8, 200, 350):
@@ -67,8 +75,9 @@ def getStory1():
                 return False
             time.sleep(1.5)
 
+@log_function
 def reset():
-    print("reset")
+    #print("reset")
     #fail("stopping app for debugging")
     clickGame(screenOpts,Clicks.appsMenu,1)
     clickGame(screenOpts, Clicks.clearAll,1)
@@ -80,8 +89,9 @@ def reset():
 def clickContinue(sleep=0.5):
     return clickImage(sleep, 'res\\continue.png', 0.9, 900)
 
+@log_function
 def story1():
-    print("story1")
+    #print("story1")
     if not clickContinue(4): return False
     if not clickContinue(4): return False
     if not clickImage(2,'res\\story1\\001-woIstMeinPass.png'): return False
@@ -112,10 +122,11 @@ def story1():
     if not clickContinue(4): return False
     return True
 
+@log_function
 def quiz():
     #updateWindow()
     clickGame(screenOpts,Clicks.windowBar) #windowFocus
-    print("Starting " + sys._getframe(  ).f_code.co_name)
+    #print("Starting " + sys._getframe(  ).f_code.co_name)
     de = []
     en = []
     #Yoffset=430 #android
@@ -241,6 +252,7 @@ def quiz():
         print("we're done")
     return True
 
+@log_function
 def mainLoop():
     if isWindowFocus(screenOpts):
 
