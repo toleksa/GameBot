@@ -33,3 +33,13 @@ No configuration, just fire & forget
 ## Demo
 
 ![full.gif](https://raw.githubusercontent.com/toleksa/GameBot/main/duolingo/doc/full.gif)
+
+## Details
+
+### Find story
+
+### Go through the story
+
+### Quiz
+
+![quiz.png](https://raw.githubusercontent.com/toleksa/GameBot/main/duolingo/doc/quiz.png)
