@@ -20,6 +20,13 @@ class screenOpts:
     window = 0
     debug = 0
 
+def winEnumHandler( hwnd, ctx ):
+    if win32gui.IsWindowVisible( hwnd ):
+        print ( hex( hwnd ), win32gui.GetWindowText( hwnd ) )
+
+def listWindows():
+    win32gui.EnumWindows( winEnumHandler, None )
+
 def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0,contrast=False):
     if Yoffset + YbottomOffset >= screenOpts.y_len:
         print("ERROR - offsets bigger than total height")
