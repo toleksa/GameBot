@@ -138,7 +138,7 @@ def quiz():
     Yoffset = ptr[1] + 30
     print('offset: ' + str(Yoffset))
     reader = easyocr.Reader(['de','en'])
-    arr=reader.readtext(np.array(grabGameWindow(screenOpts,Yoffset,250,True)), detail = 1)
+    arr=reader.readtext(np.array(grabGameWindow(screenOpts,Yoffset,100,True)), detail = 1)
     for i in range(len(arr)):
         ele=arr[i]
         if(ele[1]=='CONTINUE'):
@@ -267,7 +267,6 @@ def mainLoop():
 def main():
     updateWindow(screenOpts)
     clickGame(screenOpts,Clicks.windowBar) #windowFocus
-
     # for testing individual functions
     #reset()
     #getStory1()
