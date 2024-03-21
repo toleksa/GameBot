@@ -1,5 +1,4 @@
-# Elite Dangerous
-### for Elite Dangerous - [Epic Games](https://store.epicgames.com/en-US/p/elite-dangerous)
+# Elite Dangerous - [Epic Games](https://store.epicgames.com/en-US/p/elite-dangerous)
 Bot to aid piloting
 
 ## Tech
