@@ -50,9 +50,9 @@ def ReleaseKey(hexKeyCode):
               ki=KEYBDINPUT(wVk=hexKeyCode,
                             dwFlags=KEYEVENTF_KEYUP))
     user32.SendInput(1, ctypes.byref(x), ctypes.sizeof(x))
-def directInput(hexKeyCode,waitTime=0.5):
+def Key(hexKeyCode, pressTime=0.2, waitTime=0.5):
     PressKey(hexKeyCode)
-    time.sleep(0.2)
+    time.sleep(pressTime)
     ReleaseKey(hexKeyCode)
     time.sleep(waitTime)
     # you can change 0x30 to any key you want. For more info look at :

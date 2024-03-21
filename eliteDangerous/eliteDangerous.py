@@ -15,16 +15,16 @@ class Clicks:
 
 def docking():
     print("docking")
-    directInput(0x43) #C - throttle 100%
+    Key(0x43) #C - throttle 100%
     time.sleep(10)
-    directInput(0x58) #X - throttle 0%
-    directInput(0x31) #1 - external panel
+    Key(0x58) #X - throttle 0%
+    Key(0x31) #1 - external panel
     while findImgOnScreen(screenOpts, 'res\\contacts.png') == 0:
-        directInput(0x45) #e - interface right
-    directInput(0x20) #space - enter
-    directInput(0x44) #d - interface right
-    directInput(0x20) #space - enter
-    directInput(0x08) #backspace - go back
+        Key(0x45) #e - interface right
+    Key(0x20) #space - enter
+    Key(0x44) #d - interface right
+    Key(0x20) #space - enter
+    Key(0x08) #backspace - go back
     print("docking complete")
 
 def dock():
