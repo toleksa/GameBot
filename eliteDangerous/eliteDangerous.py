@@ -5,13 +5,6 @@ import inspect
 # TODO: change class to dictionary
 class Clicks:
     windowBar = (200,200)
-    damage = (216, 706)
-    speed = (488, 719)
-    atkrange = (209, 938)
-    meter = (488, 932)
-    
-    shoppingList = []
-    shoppingCounter = 0
 
 def docking():
     print("docking")
