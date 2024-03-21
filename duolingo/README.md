@@ -1,5 +1,4 @@
-# Duolingo
-### for Duolingo - [Google Play](https://play.google.com/store/apps/details?id=com.duolingo)
+# Duolingo - [Google Play](https://play.google.com/store/apps/details?id=com.duolingo)
 Bot which can solve Story in Duolingo
 
 ## Tech
