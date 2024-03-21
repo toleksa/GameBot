@@ -1,5 +1,4 @@
-# The Tower
-### for The Tower - [Google Play](https://play.google.com/store/apps/details?id=com.TechTreeGames.TheTower)
+# The Tower - [Google Play](https://play.google.com/store/apps/details?id=com.TechTreeGames.TheTower)
 Very simple bot to farm resources by playing again and again
 
 ## Tech
@@ -12,7 +11,7 @@ Bot uses following libraries:
 
 ## How it works
 
-GameBot has two main parts. libBot.py is a toolkit handling all technical stuff like mouse control, window control or image recognition. On top of that, LostCrusade.py has the game logic with all steps required to perform in-game tasks like send army to gather resources or order production of new units.
+GameBot has two main parts. libBot.py is a toolkit handling all technical stuff like mouse control, window control or image recognition. On top of that, theTower.py has the game logic with all steps required to farm scores by constantly playing game.
 
 On technical level, modus operandi is to check on screen, using image recognition, if there is particular button/symbol, click it and check results - for example another button/symbol appeared on screen, then proceed with next step.
 
