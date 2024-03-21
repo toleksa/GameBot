@@ -2,9 +2,9 @@ from libBot import *
 from directInput import *
 import inspect
 
-# TODO: change class to dictionary
-class Clicks:
-    windowBar = (200,200)
+Clicks = {
+    windowBar = (200,200),
+}
 
 def docking():
     print("docking")
@@ -30,7 +30,7 @@ def dock():
             elif findImgOnScreen(screenOpts, 'res\\supercruise3.png') == 0:
                 break
         if not isWindowFocus(screenOpts):
-            clickGame(screenOpts, Clicks.windowBar)  # windowFocus
+            clickGame(screenOpts, Clicks['windowBar'])  # windowFocus
         docking()
         #print("exiting")
         #exit(0)
@@ -44,7 +44,7 @@ def main():
     #listWindows()
     screenOpts.windowName='Elite - Dangerous (CLIENT)'
     updateWindow(screenOpts)
-    clickGame(screenOpts,Clicks.windowBar) #windowFocus
+    clickGame(screenOpts,Clicks['windowBar']) #windowFocus
     
     #docking()
 
