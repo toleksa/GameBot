@@ -9,6 +9,9 @@ import os
 import sys
 
 class screenOpts:
+    def __str__(self):
+        return f"{self.windowName} x_min:{self.x_min} y_min:{self.y_min} x_max:{self.x_max} y_max:{self.y_max} x_len:{self.x_len} y_len:{self.y_len} dim_sum:{self.dim_sum} window:{self.window} debug:{self.debug}"
+
     windowName = "NoxPlayer"
     x_min = 0
     y_min = 0
@@ -27,11 +30,16 @@ def winEnumHandler( hwnd, ctx ):
 def listWindows():
     win32gui.EnumWindows( winEnumHandler, None )
 
-def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0,contrast=False):
+def grabFragment(screenOpts,x1,y1,x2,y2):
+    XrightOffset=screenOpts.x_len-x2
+    YbottomOffset=screenOpts.y_len-y2
+    return grabGameWindow(screenOpts,Yoffset=y1,YbottomOffset=YbottomOffset,contrast=False,Xoffset=x1,XrightOffset=XrightOffset)
+
+def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0,contrast=False,Xoffset=0,XrightOffset=0):
     if Yoffset + YbottomOffset >= screenOpts.y_len:
         print("ERROR - offsets bigger than total height")
         return -1
-    im = ImageGrab.grab((screenOpts.x_min,screenOpts.y_min+Yoffset,screenOpts.x_max,screenOpts.y_max-YbottomOffset), all_screens=True)
+    im = ImageGrab.grab((screenOpts.x_min+Xoffset,screenOpts.y_min+Yoffset,screenOpts.x_max-XrightOffset,screenOpts.y_max-YbottomOffset), all_screens=True)
     if contrast:
         im = ImageEnhance.Brightness(im)
         im = im.enhance(1.5)
@@ -41,8 +49,8 @@ def grabGameWindow(screenOpts,Yoffset=0,YbottomOffset=0,contrast=False):
         im.save(os.getcwd() + '\\GrabGameWindow.png', 'PNG')
     return im
 
-def findImgOnScreen(screenOpts, template_img, threshold=0.8, Yoffset=0, YbottomOffset=0):
-    img_rgb = cv2.cvtColor(np.array(grabGameWindow(screenOpts,Yoffset,YbottomOffset)), cv2.COLOR_RGB2BGR)
+def findImgOnScreen(screenOpts, template_img, threshold=0.8, Yoffset=0, YbottomOffset=0, Xoffset=0, XrightOffset=0):
+    img_rgb = cv2.cvtColor(np.array(grabGameWindow(screenOpts,Yoffset,YbottomOffset,Xoffset=Xoffset, XrightOffset=XrightOffset)), cv2.COLOR_RGB2BGR)
     template = cv2.imread(template_img)
     w, h = template.shape[:-1]
     res = cv2.matchTemplate(img_rgb, template, cv2.TM_CCOEFF_NORMED)
@@ -51,7 +59,7 @@ def findImgOnScreen(screenOpts, template_img, threshold=0.8, Yoffset=0, YbottomO
     if len(list(zip(*loc[::-1]))):
         for pt in zip(*loc[::-1]):  # Switch collumns and rows
             cv2.rectangle(img_rgb, pt, (pt[0] + h, pt[1] + w), (0, 0, 255), 2)
-            click = (pt[0] + screenOpts.x_min, pt[1] + screenOpts.y_min + Yoffset)
+            click = (pt[0] + screenOpts.x_min + Xoffset, pt[1] + screenOpts.y_min + Yoffset)
             if screenOpts.debug != 0:
                 cv2.imwrite('result.png', img_rgb)
                 print('found: ',click)
@@ -74,17 +82,17 @@ def clickImage(sleep, template_img, threshold=0.8, Yoffset=0, YbottomOffset=0, p
             counter-=1
             time.sleep(1)
 
-def clickAbsolute(screenOpts,x=(0, 0),delay=0.5):
+def clickAbsolute(screenOpts,x=(0, 0),delay=0.5,pressTime=0.05):
     updateWindow(screenOpts)
     win32api.SetCursorPos(x)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
-    time.sleep(.05)
+    time.sleep(pressTime)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
     print("Click.",x)
     time.sleep(delay)
 
-def clickGame(screenOpts,x=(0, 0),delay=0.5,Yoffset=0):
-    clickAbsolute(screenOpts,(int(x[0])+screenOpts.x_min,int(x[1])+screenOpts.y_min+Yoffset),delay)
+def clickGame(screenOpts,x=(0, 0),delay=0.5,Yoffset=0,pressTime=0.05):
+    clickAbsolute(screenOpts,(int(x[0])+screenOpts.x_min,int(x[1])+screenOpts.y_min+Yoffset),delay,pressTime)
 
 def cursorPosition(screenOpts,x=(0, 0)):
     win32api.SetCursorPos((x[0]+screenOpts.x_min,x[1]+screenOpts.y_min))
@@ -119,10 +127,15 @@ def getWindow(screenOpts):
     y = rect[1]
     w = rect[2] - x
     h = rect[3] - y
-    screenOpts.x_min = x + 2
-    screenOpts.y_min = y + 32
-    screenOpts.x_max = x + w - 40
-    screenOpts.y_max = y + h - 2
+    screenOpts.x_min = x
+    screenOpts.y_min = y
+    screenOpts.x_max = x + w
+    screenOpts.y_max = y + h
+    if windowed==1:
+        screenOpts.x_min+=2
+        screenOpts.y_min+=32
+        screenOpts.x_max-=40
+        screenOpts.y_max-=2
     screenOpts.x_len = screenOpts.x_max - screenOpts.x_min
     screenOpts.y_len = screenOpts.y_max - screenOpts.y_min
     sum = screenOpts.x_min + screenOpts.x_max + screenOpts.y_min + screenOpts.y_max + screenOpts.x_len + screenOpts.y_len
